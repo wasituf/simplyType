@@ -4,6 +4,7 @@ export const UISelectors = {
   card: document.querySelector('.card'),
   keyboard: document.querySelector('.keyboard'),
   text: document.querySelector('.text'),
+  spans: document.getElementsByTagName('span'),
   typingField: document.querySelector('#typing-field'),
   spacebar: document.querySelector('.spacebar'),
   keys: document.querySelectorAll('td'),
@@ -17,8 +18,9 @@ export const UISelectors = {
 };
 
 export default function showText(words) {
-  const wordsArr = words.join(' ');
-  UISelectors.text.innerHTML = wordsArr;
+  words.forEach(word => {
+    UISelectors.text.innerHTML += `<span>${word}</span> `;
+  });
 }
 
 export function blurText() {
@@ -55,6 +57,23 @@ export function animateRandKey(pressedKey) {
 
 export function clearTypingField() {
   UISelectors.typingField.value = null;
+}
+
+export function changeParagraph(count, max) {
+  const spans = Array.from(UISelectors.spans);
+  spans.forEach(word => {
+    word.classList.remove('highlight');
+  });
+
+  if (count < max) {
+    spans[count].classList.add('highlight');
+  }
+}
+
+export function highlight(type, count) {
+  const spans = Array.from(UISelectors.spans);
+
+  spans[count].classList.add(type);
 }
 
 export function changeStateToSettings() {

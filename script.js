@@ -15,7 +15,9 @@ import {
   animateRandKey,
   clearTypingField,
   changeStateToSettings,
-  changeStateToFinish
+  changeStateToFinish,
+  changeParagraph,
+  highlight
 } from './modules/ui.mjs';
 
 // Variables
@@ -31,6 +33,12 @@ let accuracy = 0;
 function loadContent() {
   showText(wordsArr);
   UISelectors.typingField.focus();
+  updateText();
+}
+
+// Update Text
+function updateText() {
+  changeParagraph(count, wordsArr.length);
 }
 
 // App
@@ -60,26 +68,29 @@ function app(e) {
       if (UISelectors.typingField.value !== '') {
         if (UISelectors.typingField.value.trim() === currentWord) {
           correctChars += currentWord.length;
+          highlight('correct', count);
+          correctChars += 1;
         } else {
           wrongChars += currentWord.length;
+          highlight('wrong', count);
         }
 
         // Clear typing field
         clearTypingField();
 
-        // Accounting for space characters
-        correctChars += 1;
-
         // Iterating count and current word
         count = count + 1;
         currentWord = wordsArr[count];
+
+        // Update ui
+        updateText();
 
         if (count === wordsArr.length) {
           // Stop timer
           stopTimer();
 
           // Calculate data
-          const totalChars = correctChars + wrongChars;
+          const totalChars = correctChars + wrongChars + (wordsArr.length - 1);
           accuracy = Math.round((correctChars / totalChars) * 100);
           wpm = Math.round(correctChars / 5 / (time / 60));
 
