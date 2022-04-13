@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>simplyType</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Title -->
+      <h1><i class="lar la-keyboard"></i>simplyType.</h1>
+
+      <!-- Menu -->
+      <a href="#" class="settings-btn"><i class="las la-cog"></i></a>
+      <a href="index.html" class="play-btn"
+        ><i class="las la-tachometer-alt"></i
+      ></a>
+
+      <!-- Play Area -->
+      <div class="card">
+        <p class="text"></p>
+        <hr />
+        <textarea
+          name="typing-field"
+          id="typing-field"
+          cols="137"
+          rows="1"
+          maxlength="30"
+          spellcheck="false"
+        ></textarea>
+      </div>
+
+      <!-- Keyboard -->
+      <table class="keyboard">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="spacebar"></div>
+
+      <!-- Finish State -->
+      <div class="finish-state">
+        <div class="card">
+          <div class="results">
+            <div class="wpm">
+              <h2>WPM</h2>
+              <small>typing speed</small>
+            </div>
+            <div class="accuracy">
+              <h2>Accuracy</h2>
+              <small>accuracy</small>
+            </div>
+            <div class="time">
+              <h2>Time</h2>
+              <small>seconds</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings State -->
+      <div class="settings-state">
+        <div class="line">
+          <div class="settings-field accent-color">
+            <label for="color-picker">Change Accent Color: </label>
+            <input type="color" id="color-picker" />
+          </div>
+          <div class="settings-field mode">
+            <label for="words-input">Change Text Length: </label>
+            <input type="number" id="words-input" value="50" />
+          </div>
+        </div>
+        <a href="#" class="save-btn">Save Settings</a>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

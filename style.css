@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --accent-color: #007acc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Futura Book Medium';
+  background: #ccc;
+}
+
+.container {
+  max-width: 980px;
+  margin: 2rem auto 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Menus */
+.settings-btn,
+.play-btn {
+  font-size: 1.6rem;
+  color: #555;
+  transition: 0.1s all;
+  position: absolute;
+  top: 0.75rem;
+  right: 2rem;
+  outline: none;
+}
+
+.play-btn {
+  right: 4.5rem;
+}
+
+.settings-btn:hover,
+.play-btn:hover,
+.play-btn:focus {
+  color: #fff;
+}
+
+/* Title */
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  color: #222;
+}
+
+h1 i {
+  color: var(--accent-color);
+  font-size: 2rem;
+}
+
+/* Typing Area */
+.card {
+  background: #333;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card .text {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #dbdbdb;
+  padding: 0 1rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.card hr {
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  background-color: rgb(153, 153, 153);
+}
+
+#typing-field {
+  max-width: 100%;
+  resize: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: rgb(39, 39, 39);
+  background-color: #ebebeb;
+  text-align: center;
+}
+
+#typing-field:focus {
+  outline: none;
+  border: 2px solid rgb(68, 68, 68);
+}
+
+/*---------------------------------------
+-------------- Keyboard -----------------
+-----------------------------------------*/
+.keyboard {
+  margin: 0 auto;
+  max-width: 500px;
+  border-spacing: 0.5rem;
+}
+
+.keyboard tr td,
+.spacebar {
+  border: 1px solid #666;
+  border-radius: 0.75rem;
+  padding: 1.2rem;
+  transition: all 100ms ease-out;
+}
+
+.spacebar {
+  width: 11.5rem;
+  margin: 0 auto;
+}
+
+/*=========================================
+================ Settings =================
+=========================================== */
+.settings-state {
+  display: none;
+}
+
+.settings-field {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 6rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted #666;
+  width: 50%;
+  padding-left: 1rem;
+}
+
+#color-picker {
+  background-color: transparent;
+  border: none;
+}
+
+.line {
+  display: flex;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+#words-input {
+  width: 20%;
+  padding: 0 0.5rem;
+  font-weight: 600;
+  background-color: #333;
+  border: none;
+  color: #f4f4f4;
+  font-size: 1rem;
+}
+
+.save-btn {
+  text-decoration: none;
+  color: #f4f4f4;
+  background-color: var(--accent-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: block;
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* ==========================================
+================ Finish State ===============
+============================================= */
+.finish-state {
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.finish-state .card {
+  padding: 6rem 0;
+}
+
+.finish-state .results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f4f4f4;
+}
+
+.finish-state .results .wpm,
+.finish-state .results .accuracy {
+  margin-right: 4rem;
+}
+
+.finish-state .wpm h2,
+.finish-state .accuracy h2,
+.finish-state .time h2 {
+  margin-bottom: -0.5rem;
+  font-size: 2rem;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.finish-state .wpm small,
+.finish-state .accuracy small,
+.finish-state .time small {
+  color: rgba(255, 255, 255, 60%);
+}
