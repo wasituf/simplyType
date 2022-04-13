@@ -57,30 +57,36 @@ function app(e) {
     }
 
     if (e.key === ' ') {
-      if (UISelectors.typingField.value.trim() === currentWord) {
-        correctChars += currentWord.length + 1;
-      } else {
-        wrongChars += currentWord.length;
-      }
+      if (UISelectors.typingField.value !== '') {
+        if (UISelectors.typingField.value.trim() === currentWord) {
+          correctChars += currentWord.length;
+        } else {
+          wrongChars += currentWord.length;
+        }
 
-      // Clear typing field
-      clearTypingField();
+        // Clear typing field
+        clearTypingField();
 
-      count = count + 1;
-      currentWord = wordsArr[count];
+        // Accounting for space characters
+        correctChars += 1;
 
-      if (count === wordsArr.length) {
-        // Stop timer
-        stopTimer();
+        // Iterating count and current word
+        count = count + 1;
+        currentWord = wordsArr[count];
 
-        // Calculate data
-        const totalChars = correctChars + wrongChars;
-        accuracy = Math.round((correctChars / totalChars) * 100);
-        wpm = Math.round(correctChars / 5 / (time / 60));
+        if (count === wordsArr.length) {
+          // Stop timer
+          stopTimer();
 
-        changeStateToFinish(wpm, accuracy, time);
+          // Calculate data
+          const totalChars = correctChars + wrongChars;
+          accuracy = Math.round((correctChars / totalChars) * 100);
+          wpm = Math.round(correctChars / 5 / (time / 60));
 
-        resetTimer();
+          changeStateToFinish(wpm, accuracy, time);
+
+          resetTimer();
+        }
       }
       e.preventDefault();
     }
