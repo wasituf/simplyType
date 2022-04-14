@@ -19,18 +19,20 @@ export const UISelectors = {
 
 export default function showText(words) {
   words.forEach(word => {
-    UISelectors.text.innerHTML += `<span>${word}</span> `;
+    UISelectors.text.innerHTML += `<span>${word}</span>`;
   });
 }
 
-export function blurText() {
-  UISelectors.text.style.color = 'transparent';
-  UISelectors.text.style.textShadow = '0 0 12px #666';
+export function addBlur() {
+  const words = Array.from(UISelectors.spans);
+
+  words.forEach(word => word.classList.add('blur'));
 }
 
-export function unblurText() {
-  UISelectors.text.style.color = '#dbdbdb';
-  UISelectors.text.style.textShadow = 'none';
+export function removeBlur() {
+  const words = Array.from(UISelectors.spans);
+
+  words.forEach(word => word.classList.remove('blur'));
 }
 
 export function animateSpacebar() {
@@ -39,8 +41,10 @@ export function animateSpacebar() {
 
   setTimeout(() => {
     UISelectors.spacebar.style.backgroundColor = 'transparent';
-    UISelectors.spacebar.style.opacity = '1';
-  }, 100);
+  }, 400);
+  setTimeout(() => {
+    UISelectors.spacebar.style.opacity = '0.8';
+  }, 300);
 }
 
 export function animateRandKey(pressedKey) {
@@ -48,11 +52,13 @@ export function animateRandKey(pressedKey) {
   const key = keys[convertKeyToInt(pressedKey)];
 
   key.style.backgroundColor = '#007acc';
-  key.style.opacity = '0.7';
+  key.style.opacity = '0.6';
   setTimeout(() => {
     key.style.backgroundColor = 'transparent';
-    key.style.opacity = '1';
-  }, 100);
+  }, 400);
+  setTimeout(() => {
+    key.style.opacity = '0.8';
+  }, 300);
 }
 
 export function clearTypingField() {
@@ -74,6 +80,12 @@ export function highlight(type, count) {
   const spans = Array.from(UISelectors.spans);
 
   spans[count].classList.add(type);
+}
+
+export function removeHighlight(type, count) {
+  const spans = Array.from(UISelectors.spans);
+
+  spans[count].classList.remove(type);
 }
 
 export function changeStateToSettings() {

@@ -13,7 +13,7 @@
 html,
 body {
   font-family: 'Futura Book Medium';
-  background: #ccc;
+  background: #222;
 }
 
 .container {
@@ -27,18 +27,23 @@ body {
 ================= Utilities ================
 ============================================ */
 .highlight {
-  background-color: #cacaca;
-  color: rgb(39, 39, 39);
+  background-color: rgb(42, 42, 42);
+  color: #dbdbdb;
 }
 
 .correct {
-  background-color: #444;
-  color: rgb(0, 177, 0);
+  /* background-color: #444; */
+  color: rgb(0, 126, 0);
 }
 
 .wrong {
-  background-color: #444;
-  color: rgb(211, 0, 0);
+  /* background-color: #444; */
+  color: rgb(184, 0, 0);
+}
+
+.blur {
+  color: transparent;
+  text-shadow: 0 0 12px #666;
 }
 
 /* Menus */
@@ -70,7 +75,7 @@ h1 {
   margin-bottom: 4rem;
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
-  color: #222;
+  color: #dbdbdb;
 }
 
 h1 i {
@@ -80,7 +85,6 @@ h1 i {
 
 /* Typing Area */
 .card {
-  background: #333;
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -93,6 +97,15 @@ h1 i {
   color: #dbdbdb;
   padding: 0 1rem;
   transition: all 0.4s ease-in-out;
+  max-width: 100%;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.card .text > span {
+  padding: 0 0.5rem;
+  display: inline-block;
+  border-radius: 0.5rem;
 }
 
 .card hr {
@@ -111,7 +124,7 @@ h1 i {
   text-decoration: none;
   color: rgb(39, 39, 39);
   background-color: #ebebeb;
-  text-align: center;
+  text-align: left;
 }
 
 #typing-field:focus {
@@ -133,7 +146,7 @@ h1 i {
   border: 1px solid #666;
   border-radius: 0.75rem;
   padding: 1.2rem;
-  transition: all 100ms ease-out;
+  transition: all 200ms ease-out;
 }
 
 .spacebar {

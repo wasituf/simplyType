@@ -1,5 +1,5 @@
 import generateText from './modules/text.mjs';
-import showText from './modules/ui.mjs';
+import showText, { removeHighlight } from './modules/ui.mjs';
 import {
   time,
   startTimer,
@@ -9,8 +9,8 @@ import {
 } from './modules/timer.mjs';
 import {
   UISelectors,
-  blurText,
-  unblurText,
+  addBlur,
+  removeBlur,
   animateSpacebar,
   animateRandKey,
   clearTypingField,
@@ -28,6 +28,7 @@ let wrongChars = 0;
 let currentWord = wordsArr[0];
 let wpm = 0;
 let accuracy = 0;
+let wordToCompare = currentWord.split('');
 
 // Load content
 function loadContent() {
@@ -91,7 +92,9 @@ function app(e) {
 
           // Calculate data
           const totalChars = correctChars + wrongChars + (wordsArr.length - 1);
-          accuracy = Math.round((correctChars / totalChars) * 100);
+          accuracy = Math.round(
+            (correctChars / (totalChars - (wordsArr.length - 1))) * 100
+          );
           wpm = Math.round(correctChars / 5 / (time / 60));
 
           changeStateToFinish(wpm, accuracy, time);
@@ -100,6 +103,30 @@ function app(e) {
         }
       }
       e.preventDefault();
+    } else if (e.key === 'Backspace') {
+      try {
+        let wordToCompare = currentWord.split('');
+        wordToCompare.length = UISelectors.typingField.value.length - 1;
+        wordToCompare = wordToCompare.join('');
+        let inputWord = UISelectors.typingField.value.split('');
+        inputWord.length -= 1;
+        inputWord = inputWord.join('');
+
+        if (inputWord === wordToCompare) {
+          removeHighlight('wrong', count);
+        }
+      } catch (error) {}
+    } else {
+      let wordToCompare = currentWord.split('');
+      wordToCompare.length = UISelectors.typingField.value.length + 1;
+      wordToCompare = wordToCompare.join('');
+      // console.log(wordToCompare);
+
+      if (UISelectors.typingField.value + e.key !== wordToCompare) {
+        highlight('wrong', count);
+      } else {
+        removeHighlight('wrong', count);
+      }
     }
   }
 }
@@ -107,6 +134,7 @@ function app(e) {
 // Event listeners
 window.addEventListener('DOMContentLoaded', loadContent);
 window.addEventListener('keydown', app);
-UISelectors.typingField.addEventListener('focusin', unblurText);
-UISelectors.typingField.addEventListener('focusout', blurText);
+UISelectors.typingField.addEventListener('focusin', removeBlur);
+UISelectors.typingField.addEventListener('focusout', addBlur);
+
 UISelectors.settingsBtn.addEventListener('click', changeStateToSettings);
